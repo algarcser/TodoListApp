@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/drawable/spinner_background.xml" value="0.289" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/Tarea_adapter.xml" value="0.18802083333333333" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_anadir_actividad.xml" value="0.33" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_seleccion_tarea_modificar.xml" value="0.25" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/anadir_nueva_tarea.xml" value="0.358695652173913" />
       </map>
     </option>
