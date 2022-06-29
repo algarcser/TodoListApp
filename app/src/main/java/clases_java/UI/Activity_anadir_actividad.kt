@@ -32,8 +32,6 @@ class Activity_anadir_actividad : AppCompatActivity() {
         setContentView(binding_add_actividad.root)
 
 
-
-
         // creamos la lista de categorías que tenemos que meter en el spiner
         val lista_categorias : MutableList<String> = ArrayList<String>()
         for (elemento in Categorias.values())

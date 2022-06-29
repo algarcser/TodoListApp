@@ -14,17 +14,35 @@ class TareaAdapter(
     private val dataset: List<Tarea>
 ) : RecyclerView.Adapter<TareaAdapter.ItemViewHolder>() {
 
+    private lateinit var mListener: onItemClickerListener
 
-    // creamos la clase auxiliar para seleccionar el formato que tendrá nuestra Tarea
-    class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.Tarea_description_adapter_title)
+    interface onItemClickerListener{
+        fun onItemClick(position: Int)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TareaAdapter.ItemViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.tarea_adapter, parent, false) // le indicamos que acaptador queremos usar
+    fun setOnItemClickListerner(listener: onItemClickerListener){
+        mListener = listener
+    }
 
-        return ItemViewHolder(adapterLayout)
+
+    // creamos la clase auxiliar para seleccionar el formato que tendrá nuestra Tarea
+    class ItemViewHolder(private val view: View, listener: onItemClickerListener) : RecyclerView.ViewHolder(view) {
+        val textView: TextView = view.findViewById(R.id.Tarea_description_adapter_title)
+
+        init{
+
+            view.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val adapterLayout = LayoutInflater.from(parent.context)
+            .inflate(R.layout.tarea_adapter_layout, parent, false) // le indicamos que acaptador queremos usar
+
+        return ItemViewHolder(adapterLayout, mListener)
     }
 
     override fun onBindViewHolder(holder: TareaAdapter.ItemViewHolder, position: Int) {

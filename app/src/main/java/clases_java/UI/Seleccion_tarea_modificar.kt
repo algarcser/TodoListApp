@@ -18,7 +18,20 @@ class Seleccion_tarea_modificar : AppCompatActivity() {
         val lista_Tareas = lista_auxiliarTareas
         val recyclerView = binding_select_actividad_modificar.descripcionTareasRecyclerView
 
-        recyclerView.adapter = TareaAdapter(this, lista_Tareas)
+
+
+        var adapter = TareaAdapter(this, lista_Tareas)
+        recyclerView.adapter = adapter
+
+        adapter.setOnItemClickListerner(object : TareaAdapter.onItemClickerListener{
+            override fun onItemClick(position: Int) {
+                // esto sería identificar que es lo que queremos hacer cuando, clicamos.
+
+
+
+
+            }
+        })
 
 
         recyclerView.setHasFixedSize(true)
