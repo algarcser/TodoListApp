@@ -64,7 +64,7 @@ class Activity_anadir_actividad : AppCompatActivity() {
         val database_tareas = Room.databaseBuilder(this, TareaDatabase::class.java, "Actividad").build()
 
         // vamos añadir el botón de añadir una nueva activdad
-        binding_add_actividad.buttonAnadirActividadMenuActividad.setOnClickListener { anadir_actividad_base_datos(database_tareas) }
+        binding_add_actividad.buttonAnadirTareaMenuTarea.setOnClickListener { anadir_actividad_base_datos(database_tareas) }
 
 
 
@@ -123,13 +123,15 @@ class Activity_anadir_actividad : AppCompatActivity() {
 
     }
 
-    fun validar_entradas() : Boolean{
-        if( binding_add_actividad.editTextNumberDuracionEstimada.text.toString().toInt() <= 0){
+    fun validar_entradas() : Boolean {
+        if (binding_add_actividad.editTextNumberDuracionEstimada.text.toString().toInt() <= 0) {
             return false
-        }else{
+        } else {
             return true
         }
-
     }
+
+
+
 
 }

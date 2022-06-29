@@ -2,11 +2,12 @@ package clases_java.model_clases
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.sql.Date
 
 
 @Entity(tableName = "tarea_table")
-data class Tarea(
+data class Tarea (
     @PrimaryKey(autoGenerate = true) val id: Int = 1,
     val categoria: Categorias,
     val prioridad: Prioridad,

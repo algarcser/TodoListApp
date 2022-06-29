@@ -1,8 +1,6 @@
 package clases_java.model_Dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import clases_java.model_clases.Tarea
 
 @Dao
@@ -22,4 +20,11 @@ interface TareaDao {
 
     @Query("Select descripcion from tarea_table where id= :id_tarea")
     fun get_descripcion_from_codigo(id_tarea: Int) : String
+
+    @Update
+    fun update_tarea(tarea: Tarea)
+
+    @Delete
+    fun delete_tarea(tarea: Tarea)
+
 }
