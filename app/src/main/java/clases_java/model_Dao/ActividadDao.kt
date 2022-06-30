@@ -11,15 +11,18 @@ import java.sql.Date
 interface ActividadDao {
 
     @Insert
-    fun inset_actividad(actividad: Actividad)
+    fun insert_actividad(actividad: Actividad)
 
     @Query( "Select * from actividad_table")
     fun get_all_actividades() : List<Actividad>
 
     @Query("select * from actividad_table where id= :id_tarea")
-    fun get_actividades_from_tarea(id_tarea: String) : List<Actividad>
+    fun get_actividades_from_id(id_tarea: Int) : List<Actividad>
 
     @Query("select * from actividad_table where hora_fin= :fecha")
     fun get_actividades_from_fecha(fecha: Date) : List<Actividad>
+
+    @Query("Delete from actividad_table where id = :id_tarea")
+    fun delete_all_actividad_from_id_tarea(id_tarea: Int)
 
 }

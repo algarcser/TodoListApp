@@ -159,6 +159,7 @@ class Activity_modify_tarea : AppCompatActivity() {
 
             // una vez hemos contruido de nuevo el objeto llamamos al método update
             database_tareas.delete_tarea(tarea_auxiliar)
+            // todo: Hay que eliminar todas las actividades relaccionadas con la tarea también.
         }else{
             // si falla la verificación, entonces, escribirmos los fallos que pueden haber, en este caso sabemos que siempre va a dar error aquí, pero habría que mirar más
             binding_modificar_tarea.editTextNumberDuracionEstimadaLayout.isErrorEnabled = true

@@ -8,7 +8,6 @@ import java.sql.Date
 @Entity(tableName = "actividad_table")
 data class Actividad(
     @PrimaryKey(autoGenerate = true) val id: Int = 1,
-
     val hora_inicio: Date,
     val hora_fin: Date,
     val duracion: Float,

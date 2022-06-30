@@ -17,8 +17,9 @@ class TareaAdapter(
     private lateinit var mListener: onItemClickerListener
 
     interface onItemClickerListener{
-        fun onItemClick(position: Int)
+        fun onItemClick( position: Int)
     }
+
 
     fun setOnItemClickListerner(listener: onItemClickerListener){
         mListener = listener
@@ -31,6 +32,7 @@ class TareaAdapter(
 
         init{
 
+            // todo: Hay un problema en este apartado, cuando cambio de actividad, intenta acceder al método del objeto que se ha destruido
             view.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }

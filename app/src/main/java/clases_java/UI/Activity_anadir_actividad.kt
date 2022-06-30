@@ -31,6 +31,10 @@ class Activity_anadir_actividad : AppCompatActivity() {
         binding_add_actividad = ActivityAnadirActividadBinding.inflate(layoutInflater)
         setContentView(binding_add_actividad.root)
 
+        //.allowMainThreadQueries()
+        // vamos a crear la base de datos, por debajo, como segundo hilo, para evitar que se colapse
+        val database_tareas = Room.databaseBuilder(this, TareaDatabase::class.java, "Actividad").build()
+
 
         // creamos la lista de categorías que tenemos que meter en el spiner
         val lista_categorias : MutableList<String> = ArrayList<String>()
@@ -59,9 +63,8 @@ class Activity_anadir_actividad : AppCompatActivity() {
         // llamamos a la función para hacer que el se limite la altura del drop down, para que no sea mucha. Mejora para futuro, por si hay más prioridades.
         limit_drop_down_height(binding_add_actividad.spnPrioridad)
 
-        //.allowMainThreadQueries()
-        // vamos a crear la base de datos, por debajo, como segundo hilo, para evitar que se colapse
-        val database_tareas = Room.databaseBuilder(this, TareaDatabase::class.java, "Actividad").build()
+
+
 
         // vamos añadir el botón de añadir una nueva activdad
         binding_add_actividad.buttonAnadirTareaMenuTarea.setOnClickListener { anadir_actividad_base_datos(database_tareas) }
