@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import clases_java.model_Databases.TareaDatabase
 import clases_java.model_clases.Actividad
+import clases_java.model_clases.Dia_laboral
 import clases_java.model_clases.Tarea
 import java.sql.Date
 
@@ -64,6 +65,31 @@ object Manager_TareasYActividades: Application() {
     fun delete_tarea(tarea: Tarea){
         database_tarea.delete_tarea(tarea)
         database_actividad.delete_all_actividad_from_id_tarea(tarea.id)
+    }
+
+    fun has_more_actividades(id_tarea: Int): Boolean{
+        return database_actividad.has_more_actividades(id_tarea) == 0
+    }
+
+    fun get_dias_laborales(): MutableList<Dia_laboral>{
+        val resultado: MutableList<Dia_laboral> = mutableListOf() // porque tenemos que meterle de cosas de nuevo, aquí
+
+        val auxiliar_fecha: Date = Date(System.currentTimeMillis()) // escogemos la fecha actual
+        val fecha_maxima: Date = database_actividad.get_fecha_maxima()
+
+        while( auxiliar_fecha < fecha_maxima ){
+            val lista_actividades_dia = database_actividad.get_actividades_from_fecha(auxiliar_fecha)
+
+            if( lista_actividades_dia.size>0){
+                resultado.add(
+                    Dia_laboral(
+                        list_actividades =  lista_actividades_dia,
+                        fecha = auxiliar_fecha
+                    )
+                )
+            }
+        }
+        return resultado
     }
 
 

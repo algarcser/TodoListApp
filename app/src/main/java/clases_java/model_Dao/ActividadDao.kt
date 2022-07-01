@@ -19,10 +19,22 @@ interface ActividadDao {
     @Query("select * from actividad_table where id= :id_tarea")
     fun get_actividades_from_id(id_tarea: Int) : List<Actividad>
 
-    @Query("select * from actividad_table where hora_fin= :fecha")
+    @Query("select * from actividad_table where dia_ejecucion= :fecha")
     fun get_actividades_from_fecha(fecha: Date) : List<Actividad>
 
     @Query("Delete from actividad_table where id = :id_tarea")
     fun delete_all_actividad_from_id_tarea(id_tarea: Int)
+
+
+    @Query( "select COUNT(*) as count from actividad_table where id = :id_tarea")
+    fun has_more_actividades(id_tarea: Int): Int
+
+
+    @Query("select * from actividad_table order by dia_ejecucion")
+    fun get_actividades_ordenada_fecha(): List<Actividad>
+
+
+    @Query("select MAX(dia_ejecucion) from actividad_table")
+    fun get_fecha_maxima(): Date
 
 }

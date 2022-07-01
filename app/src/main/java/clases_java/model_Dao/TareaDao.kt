@@ -27,4 +27,5 @@ interface TareaDao {
     @Delete
     fun delete_tarea(tarea: Tarea)
 
+
 }

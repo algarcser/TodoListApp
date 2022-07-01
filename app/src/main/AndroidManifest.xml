@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrganizadorTareas">
         <activity
+            android:name="clases_java.UI.Activity_mostrar_actividades_dia"
+            android:exported="false" />
+        <activity
             android:name="clases_java.UI.Activity_modify_tarea"
             android:exported="false" />
         <activity
