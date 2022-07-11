@@ -15,7 +15,7 @@ object Database_Tareas {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
                     TareaDatabase::class.java,
-                    "user_table"
+                    "tarea_table"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

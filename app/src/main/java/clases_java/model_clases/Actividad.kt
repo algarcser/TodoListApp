@@ -11,7 +11,7 @@ data class Actividad(
     val hora_inicio: Date,
     val hora_fin: Date,
     val duracion: Float,
-    val ref_tarea: String,
+    val ref_tarea: Int,
     val dia_ejecucion: Date,
     val descripcion: String
 )

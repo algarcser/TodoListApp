@@ -16,7 +16,7 @@ object Database_Actividades {
                 instance = databaseBuilder(
                     context.applicationContext,
                     ActividadDatabase::class.java,
-                    "user_table"
+                    "actividades_table"
                 )
                     .fallbackToDestructiveMigration()
                     .build()
