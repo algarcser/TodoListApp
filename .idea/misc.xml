@@ -5,7 +5,7 @@
       <map>
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/drawable/spinner_background.xml" value="0.289" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/Tarea_adapter.xml" value="0.18802083333333333" />
-        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_anadir_actividad.xml" value="0.33" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_anadir_actividad.xml" value="0.25" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_modify_tarea.xml" value="0.18802083333333333" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_mostrar_actividades_dia.xml" value="0.36666666666666664" />
@@ -13,8 +13,6 @@
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/anadir_nueva_tarea.xml" value="0.358695652173913" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/recycler_list_dia_laboral.xml" value="0.18802083333333333" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/tarea_adapter_layout.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/zonia/StudioProjects/TodoListApp/app/src/main/res/layout/activity_anadir_actividad.xml" value="0.20199275362318841" />
-        <entry key="..\:/Users/zonia/StudioProjects/TodoListApp/app/src/main/res/layout/activity_main.xml" value="0.20199275362318841" />
       </map>
     </option>
   </component>
