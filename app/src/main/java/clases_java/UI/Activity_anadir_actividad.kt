@@ -1,5 +1,6 @@
 package clases_java.UI
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -7,6 +8,7 @@ import android.widget.ListPopupWindow
 import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.room.Room
+import clases_java.Logica_negocio.Manager_TareasYActividades
 import clases_java.model_Databases.TareaDatabase
 import clases_java.model_clases.Categorias
 import clases_java.model_clases.Prioridad
@@ -23,6 +25,8 @@ class Activity_anadir_actividad : AppCompatActivity() {
     // creamos una variable general para bindear total a este apartado
     lateinit var binding_add_actividad: ActivityAnadirActividadBinding
     // private val view_model: Anadir_actividad_viewModel by viewModels()
+
+    var manager_app = Manager_TareasYActividades
 
     // en teoría esto hace que se delege la creación del objeto a esta actividad
 
@@ -70,8 +74,6 @@ class Activity_anadir_actividad : AppCompatActivity() {
         binding_add_actividad.buttonAnadirTareaMenuTarea.setOnClickListener { anadir_actividad_base_datos(database_tareas) }
 
 
-
-
     }
 
 
@@ -113,11 +115,14 @@ class Activity_anadir_actividad : AppCompatActivity() {
                 fecha_limite = fecha_limite_recibida,
                 tiempo_estimado = tiempo_estimado_recibido,
                 comentarios = comentario_recibido,
-                lista_etiquetas = lista_etiquetas_recibida,
+                lista_etiquetas = null,
                 ref_tarea_padre = ref_tarea_padre_recibida,
                 descripcion = descripcion_recibida)
 
-            database_tareas.TareaDao().insert_tarea(tarea = tarea_auxiliar)
+            manager_app.añadir_Tarea_base_datos(tarea_auxiliar)
+
+            startActivity(Intent( this, MainActivity::class.java))
+
         }else{
             // si falla la verificación, entonces, escribirmos los fallos que pueden haber, en este caso sabemos que siempre va a dar error aquí, pero habría que mirar más
             binding_add_actividad.editTextNumberDuracionEstimadaLayout.isErrorEnabled = true
@@ -127,11 +132,7 @@ class Activity_anadir_actividad : AppCompatActivity() {
     }
 
     fun validar_entradas() : Boolean {
-        if (binding_add_actividad.editTextNumberDuracionEstimada.text.toString().toInt() <= 0) {
-            return false
-        } else {
-            return true
-        }
+        return true
     }
 
 

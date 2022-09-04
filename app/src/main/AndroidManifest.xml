@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrganizadorTareas">
         <activity
+            android:name="clases_java.UI.Activity_mostrar_lista_actividades"
+            android:exported="false" />
+        <activity
             android:name="clases_java.UI.Activity_mostrar_actividades_dia"
             android:exported="false" />
         <activity
             android:name="clases_java.UI.Activity_modify_tarea"
             android:exported="false" />
         <activity
-            android:name="clases_java.UI.Seleccion_tarea_modificar"
+            android:name="clases_java.UI.Activity_mostrar_lista_tareas"
             android:exported="false" />
         <activity
             android:name="clases_java.UI.Activity_anadir_actividad"

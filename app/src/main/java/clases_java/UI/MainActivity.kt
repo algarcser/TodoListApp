@@ -23,7 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         binding_main_app.buttonEditarTareas.setOnClickListener {
             // simplemente mandatos un intent vacio, porque no tenemos que mandar más info para ejecutar la segunda actividad.
-            startActivity(Intent( this, Seleccion_tarea_modificar::class.java))
+            startActivity(Intent( this, Activity_mostrar_lista_tareas::class.java))
+        }
+
+        binding_main_app.buttonVerTareasHoy.setOnClickListener {
+            startActivity(Intent(this, Activity_mostrar_actividades_dia::class.java))
         }
 
     }

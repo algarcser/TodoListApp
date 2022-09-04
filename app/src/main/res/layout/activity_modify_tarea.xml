@@ -33,14 +33,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="41dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_tiempo_estimado"
-        >
+        app:layout_constraintStart_toEndOf="@+id/editTextDate_fecha_limite"
+        app:layout_constraintTop_toBottomOf="@+id/label_tiempo_estimado">
 
         <EditText
             android:id="@+id/editTextNumber_duracion_estimada"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:editable="true"
             android:ems="10"
             android:hint="Minutos"
             android:inputType="number" />
@@ -71,29 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_fecha_limite" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spn_prioridad"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/spinner_background"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toEndOf="@+id/label_prioridad"
-        app:layout_constraintTop_toBottomOf="@+id/spn_categoria" />
-
-    <TextView
-        android:id="@+id/label_tarea_padre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginEnd="289dp"
-        android:layout_marginBottom="9dp"
-        android:text="Subtarea de:"
-        app:layout_constraintBottom_toTopOf="@+id/button_anadir_tarea_menu_tarea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/label_categoria"
         android:layout_width="wrap_content"
@@ -120,35 +96,22 @@
         android:id="@+id/label_tiempo_estimado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
         android:text="Duración estimada: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_prioridad" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText_prioridad" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Añadir nueva tarea"
+        android:text="Modificiar Tarea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spn_categoria"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/spinner_background"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/label_categoria"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_descripcion" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/label_comentarios"
@@ -181,6 +144,30 @@
         android:text="Descripción"
         app:layout_constraintStart_toEndOf="@+id/label_descripcion"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editTextText_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textLongMessage|textPersonName"
+        android:text="Categoria"
+        app:layout_constraintStart_toEndOf="@+id/label_categoria"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText_descripcion" />
+
+    <EditText
+        android:id="@+id/editTextText_prioridad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textLongMessage|textPersonName"
+        android:text="Prioridad"
+        app:layout_constraintStart_toEndOf="@+id/label_prioridad"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText_categoria" />
 
     <EditText
         android:id="@+id/editTextText_etiquetas"

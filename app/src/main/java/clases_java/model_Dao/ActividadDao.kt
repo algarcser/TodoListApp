@@ -3,6 +3,7 @@ package clases_java.model_Dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import clases_java.model_clases.Actividad
 import java.sql.Date
 
@@ -36,5 +37,8 @@ interface ActividadDao {
 
     @Query("select MAX(dia_ejecucion) from actividad_table")
     fun get_fecha_maxima(): Date
+
+    @Update
+    fun update_actividad(actividad: Actividad)
 
 }

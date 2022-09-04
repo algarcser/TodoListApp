@@ -7,12 +7,16 @@
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/Tarea_adapter.xml" value="0.18802083333333333" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_anadir_actividad.xml" value="0.25" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
-        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_modify_tarea.xml" value="0.18802083333333333" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_modify_tarea.xml" value="0.25" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_mostrar_actividades_dia.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_mostrar_lista_actividades.xml" value="0.47639956092206365" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_mostrar_lista_dias_laborales.xml" value="0.35104166666666664" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/activity_seleccion_tarea_modificar.xml" value="0.25" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/anadir_nueva_tarea.xml" value="0.358695652173913" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/recycler_list_dia_laboral.xml" value="0.18802083333333333" />
         <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/tarea_adapter_layout.xml" value="0.18802083333333333" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/xml_actividadl.xml" value="0.5" />
+        <entry key="..\:/Documentos/Organizadortareas/app/src/main/res/layout/xml_lista_tareas.xml" value="0.22604166666666667" />
       </map>
     </option>
   </component>

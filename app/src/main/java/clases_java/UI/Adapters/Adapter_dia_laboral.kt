@@ -1,46 +1,39 @@
 package clases_java.UI.Adapters
 
+import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import clases_java.model_clases.Actividad
+import clases_java.model_clases.Dia_laboral
 import com.example.organizadortareas.R
 import java.sql.Date
 import java.text.SimpleDateFormat
 
-class Adapter_dia_laboral(): RecyclerView.Adapter<Adapter_dia_laboral.MyViewHolder>() {
-
-    // para meterle los datos, directamente
-    var location_list_data = mutableListOf<Actividad>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter_dia_laboral.MyViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.recycler_list_dia_laboral, parent, false)
-        return MyViewHolder(inflater)
-    }
-
-    override fun onBindViewHolder(holder: Adapter_dia_laboral.MyViewHolder, position : Int) {
-        holder.bind(location_list_data[position])
-
-    }
-
-    override fun getItemCount(): Int {
-        return location_list_data.size
-    }
-
-    class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
-
-        // vamos a bindear cosas aquí así que hay que cambiar un par de cosas de aquí
-        val recycler_lista_actividades = view.findViewById<RecyclerView>(R.id.recycler_view_lista_actividades)
+class Adapter_dia_laboral(private val context : Activity, private val arraylist : ArrayList < Dia_laboral > ) : ArrayAdapter<Dia_laboral>( context ,
+    R.layout.recycler_list_dia_laboral, arraylist ) {
 
 
-        // queremos bindear para cada actividad, a su posición correspondiente
-        fun bind(data: Actividad, fecha: Date){
-            // colocamos al textoview general la fecha
+    override fun getView ( position : Int , convertView : View ?, parent : ViewGroup ) : View {
+        val inflater : LayoutInflater = LayoutInflater.from ( context )
+        val view : View = inflater.inflate( R.layout.recycler_list_dia_laboral , null )
 
-            if(  )
-        }
+        val textview_dia : TextView = view.findViewById(R.id.textview_dia)
+
+
+        // colocamos la fecha del dia laboral dentro del texto que se va a mostrar.
+        textview_dia.setText(arraylist[position].fecha.toString() )
+
+
+
+        return view
+
     }
 }
+
