@@ -2,6 +2,7 @@ package clases_java.model_Databases
 
 import androidx.room.TypeConverter
 import java.sql.Date
+import java.sql.Timestamp
 
 class Converters {
 
@@ -13,6 +14,16 @@ class Converters {
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
         return date?.time
+    }
+
+    @TypeConverter
+    fun fromTimestamp_tolong(value: Long?): Timestamp? {
+        return if (value == null) null else Timestamp(value)
+    }
+
+    @TypeConverter
+    fun timestamp_to_long(timestamp: Timestamp?): Long? {
+        return timestamp?.time
     }
 
     @TypeConverter
@@ -40,6 +51,7 @@ class Converters {
             return string.split("%")
         }
     }
+
 
 
 }

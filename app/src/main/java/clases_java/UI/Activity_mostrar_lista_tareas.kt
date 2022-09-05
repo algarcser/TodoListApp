@@ -26,28 +26,28 @@ class Activity_mostrar_lista_tareas : AppCompatActivity() {
 
 
 
-        manager_app.añadir_Tarea_base_datos(Tarea(id = 1,
-            categoria = Categorias.corta,
-            comentarios = "deberia de haber iniciado bien",
-            descripcion = "memes super memes",
-            fecha_limite = Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000),
-            prioridad = Prioridad.urgente,
-            tiempo_estimado = 60,
-            ref_tarea_padre = null,
-        lista_etiquetas = null)
-        )
-
-
-        manager_app.añadir_Tarea_base_datos(Tarea(id = 1,
-            categoria = Categorias.corta,
-            comentarios = "deberia de haber iniciado bien",
-            descripcion = "memes super memes v2.0",
-            fecha_limite = Date(System.currentTimeMillis() + 2* 24 * 60 * 60 * 1000),
-            prioridad = Prioridad.urgente,
-            tiempo_estimado = 60,
-            ref_tarea_padre = null,
-            lista_etiquetas = null)
-        )
+//        manager_app.añadir_Tarea_base_datos(Tarea(id = 1,
+//            categoria = Categorias.corta,
+//            comentarios = "deberia de haber iniciado bien",
+//            descripcion = "memes super memes",
+//            fecha_limite = Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000),
+//            prioridad = Prioridad.urgente,
+//            tiempo_estimado = 60,
+//            ref_tarea_padre = null,
+//        lista_etiquetas = null)
+//        )
+//
+//
+//        manager_app.añadir_Tarea_base_datos(Tarea(id = 1,
+//            categoria = Categorias.corta,
+//            comentarios = "deberia de haber iniciado bien",
+//            descripcion = "memes super memes v2.0",
+//            fecha_limite = Date(System.currentTimeMillis() + 2* 24 * 60 * 60 * 1000),
+//            prioridad = Prioridad.urgente,
+//            tiempo_estimado = 60,
+//            ref_tarea_padre = null,
+//            lista_etiquetas = null)
+//        )
 
         var lista_tareas = manager_app.get_all_tareas()
 

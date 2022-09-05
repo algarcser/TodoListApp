@@ -7,9 +7,10 @@ import clases_java.model_clases.Dia_laboral
 import clases_java.model_clases.Prioridad
 import clases_java.model_clases.Tarea
 import java.sql.Date
+import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.ArrayList
+import java.util.*
 
 
 // este será el motor que implementará toda la lógica de negocio, y estará en contacto con el back.
@@ -23,8 +24,8 @@ object Manager_TareasYActividades: Application() {
 
 
     // creamos variable para generarlo en tiempo de ejecución en ram.
-    var lista_actividades = mutableListOf<Actividad>()
-    var lista_tareas = mutableListOf<Tarea>()
+    private var lista_actividades = mutableListOf<Actividad>()
+    private var lista_tareas = mutableListOf<Tarea>()
 
 
     // el metodo de intertar actividad deberá de separar la actividad en tareas e introducirlar en la aplicación.
@@ -133,6 +134,13 @@ object Manager_TareasYActividades: Application() {
                 lista_tareas.add(position, tarea)
             }
         }
+
+        // actualizamos la descripción
+        for (actividade in lista_actividades){
+            if( actividade.ref_tarea == tarea.id){
+                actividade.descripcion = tarea.descripcion
+            }
+        }
     }
 
     // para eliminar una tarea queremos eliminar, esta y todas las tareas, que pueda haber creado
@@ -192,81 +200,113 @@ object Manager_TareasYActividades: Application() {
         return ArrayList(resultado)
     }
 
+    fun delete_actividad_from_id_actividad(id_actitivida: Int){
+        for (actividad in lista_actividades){
+            if (actividad.id == id_actitivida){
+                lista_actividades.remove(actividad)
+            }
+        }
+
+    }
+
 
     // estaría bien que la función funcionace en un rango de fechas, y que construya los días laborales que no haya nada de forma vacia para poder iterar.
     fun get_dias_laborales(): MutableList<Dia_laboral>{
         val resultado: MutableList<Dia_laboral> = mutableListOf() // porque tenemos que meterle de cosas de nuevo, aquí
 
-        val auxiliar_fecha: Date = Date(System.currentTimeMillis()) // escogemos la fecha actual
 
-        // esto limita los días laborales que podemos mirar. no me gusta nada, creo que tiene que cambiar.
-        // Todo si hay días laborales sin actividad, hay que crear un dia laboral vacio para seguir mirando
-        val fecha_maxima: Date? = get_fecha_maxima()
+        // bloque para obtener el día de hoy, y colocarlo tan solo con la hora y minuto en 0
+        // val auxiliar_fecha: Date = Date(System.currentTimeMillis()) // escogemos la fecha actual
 
-        while( fecha_maxima != null && auxiliar_fecha < fecha_maxima ){
-            val lista_actividades_dia = get_list_actividades_from_fecha(auxiliar_fecha).toMutableList()
+        val calendario: Calendar = Calendar.getInstance()
+
+        calendario.set(Calendar.HOUR_OF_DAY,0)
+        calendario.set(Calendar.MINUTE,0)
+        calendario.set(Calendar.SECOND, 0)
+        calendario.set(Calendar.MILLISECOND,0)
+
+
+
+
+
+        // le he sumado un més, miraremos un mes en adelante para colocar las cosas de forma provisional.
+        for (contador in 0..30){
+            // para cada dia obtenemos cuantas actividades tenemos, y lo devolvemos.
+
+            val lista_actividades_dia = get_list_actividades_from_fecha( Date(calendario.timeInMillis)).toMutableList()
 
             if( lista_actividades_dia.size>0){
                 resultado.add(
                     Dia_laboral(
                         list_actividades =  lista_actividades_dia,
-                        fecha = auxiliar_fecha
+                        fecha = Date(calendario.timeInMillis)
+                    )
+                )
+            }else{
+                // si no tenemos ninguna, le añadimos a ese día laboral una lista vacia para que pueda iterar bien.
+                resultado.add( Dia_laboral(
+                    list_actividades =  mutableListOf<Actividad>(),
+                    fecha = Date(calendario.timeInMillis)
                     )
                 )
             }
+
+// sumamos un día
+            calendario.add(Calendar.DAY_OF_YEAR, 1)
         }
 
+        return resultado
 
         // vamos a crearla de forma dimnámica para evitar problemas de momento.
-        val lista_tareas = mutableListOf<Actividad>()
+//        val lista_tareas = mutableListOf<Actividad>()
+//
+//        lista_tareas.add(
+//            Actividad(hora_inicio = Date( System.currentTimeMillis() ),
+//                hora_fin = Date(System.currentTimeMillis() + 60 * 60 * 1000),
+//                prioridad = Prioridad.menor,
+//                descripcion = "memes",
+//                dia_ejecucion = Date( System.currentTimeMillis() ),
+//                duracion = 60,
+//                ref_tarea = 1)
+//        )
+//
+//
+//
+//        lista_tareas.add(
+//            Actividad(hora_inicio = Date( System.currentTimeMillis() + 65 * 60 * 1000),
+//                hora_fin = Date(System.currentTimeMillis() + 120 * 60 * 1000),
+//                prioridad = Prioridad.urgente,
+//                descripcion = "memelion",
+//                dia_ejecucion = Date( System.currentTimeMillis() ),
+//                duracion = 55,
+//                ref_tarea = 1)
+//        )
+//
+//        lista_tareas.add(
+//            Actividad(hora_inicio = Date( System.currentTimeMillis() + 125 * 60 * 1000),
+//                hora_fin = Date(System.currentTimeMillis() + 180 * 60 * 1000),
+//                prioridad = Prioridad.menor,
+//                descripcion = "Prueba2",
+//                dia_ejecucion = Date( System.currentTimeMillis() ),
+//                duracion = 55,
+//                ref_tarea = 1)
+//        )
+//
+//        var resultado_provisional = mutableListOf<Dia_laboral>()
+//
+//
+//        resultado_provisional.add(Dia_laboral(list_actividades = lista_tareas,
+//            fecha = Date(   System.currentTimeMillis())))
+//
+//
+//        resultado_provisional.add(Dia_laboral(list_actividades = lista_tareas,
+//            fecha = Date(   System.currentTimeMillis() +  24 *60 *60 *1000)))
+//
+//
+//
+//        return resultado_provisional
 
-        lista_tareas.add(
-            Actividad(hora_inicio = Date( System.currentTimeMillis() ),
-                hora_fin = Date(System.currentTimeMillis() + 60 * 60 * 1000),
-                prioridad = Prioridad.menor,
-                descripcion = "memes",
-                dia_ejecucion = Date( System.currentTimeMillis() ),
-                duracion = 60,
-                ref_tarea = 1)
-        )
 
-
-
-        lista_tareas.add(
-            Actividad(hora_inicio = Date( System.currentTimeMillis() + 65 * 60 * 1000),
-                hora_fin = Date(System.currentTimeMillis() + 120 * 60 * 1000),
-                prioridad = Prioridad.urgente,
-                descripcion = "memelion",
-                dia_ejecucion = Date( System.currentTimeMillis() ),
-                duracion = 55,
-                ref_tarea = 1)
-        )
-
-        lista_tareas.add(
-            Actividad(hora_inicio = Date( System.currentTimeMillis() + 125 * 60 * 1000),
-                hora_fin = Date(System.currentTimeMillis() + 180 * 60 * 1000),
-                prioridad = Prioridad.menor,
-                descripcion = "Prueba2",
-                dia_ejecucion = Date( System.currentTimeMillis() ),
-                duracion = 55,
-                ref_tarea = 1)
-        )
-
-        var resultado_provisional = mutableListOf<Dia_laboral>()
-
-
-        resultado_provisional.add(Dia_laboral(list_actividades = lista_tareas,
-            fecha = Date(   System.currentTimeMillis())))
-
-
-        resultado_provisional.add(Dia_laboral(list_actividades = lista_tareas,
-            fecha = Date(   System.currentTimeMillis() +  24 *60 *60 *1000)))
-
-
-
-        return resultado_provisional
-
-        //return resultado
     }
 
 
@@ -287,9 +327,11 @@ object Manager_TareasYActividades: Application() {
 
         while (tiempo_total_estimado - 60 > 0){
             lista_actividades.add(Actividad( duracion = 60 , descripcion = tarea.descripcion, ref_tarea = tarea.id,
-                    dia_ejecucion = Date(System.currentTimeMillis()),
-                    hora_fin = Date(System.currentTimeMillis()),
-                    hora_inicio = Date(System.currentTimeMillis()), prioridad = tarea.prioridad )
+                dia_ejecucion = Date(System.currentTimeMillis()),
+                hora_fin = Timestamp(System.currentTimeMillis()),
+                hora_inicio = Timestamp(System.currentTimeMillis()),
+                prioridad = tarea.prioridad,
+                id = lista_actividades.size + 1 )
             )
 
             tiempo_total_estimado = tiempo_total_estimado - 60
@@ -298,19 +340,23 @@ object Manager_TareasYActividades: Application() {
         // una vez hemos quitado todos los  bloques de una hora, creamos una actividad con el tiempo restante.
         lista_actividades.add(Actividad( duracion = tiempo_total_estimado , descripcion = tarea.descripcion, ref_tarea = tarea.id,
             dia_ejecucion = Date(System.currentTimeMillis()),
-            hora_fin = Date(System.currentTimeMillis()),
-            hora_inicio = Date(System.currentTimeMillis()), prioridad = tarea.prioridad )
+            hora_fin = Timestamp(System.currentTimeMillis()),
+            hora_inicio = Timestamp(System.currentTimeMillis()),
+            prioridad = tarea.prioridad,
+            id = lista_actividades.size +1 )
         )
 
 
         // primera pasada de asignación
 
-        outer@for (dia_laboral in lista_dias_laborales){
+        for (dia_laboral in lista_dias_laborales){
+            if(lista_actividades.size == 0){
+                break
+            }
 
-            if( dia_laboral.hueco_disponible( lista_actividades[0])){
+            while( lista_actividades.size > 0 && dia_laboral.hueco_disponible( lista_actividades[0])){
                 // siempre vamos a intentar colocar la primera actividad que tengamos en la lista, si colocamos satisfactoriamente una actividad, vamos a continuar, colocando actividades
                 lista_actividades.removeAt(0)
-                continue@outer
             }
         }
 
@@ -318,19 +364,20 @@ object Manager_TareasYActividades: Application() {
         // segunda pasada con sustitución de tareas de prioridad baja.
 
         if( lista_actividades.size > 0){
-            outer2@for (dia_laboral in lista_dias_laborales){
-                var resultado : Actividad?= dia_laboral.sustituir_actividad(lista_actividades[0]);
+            for (dia_laboral in lista_dias_laborales){
 
-                // si se ha sustituido, tenemos que quitarlo, de la lista.
-                if( resultado != null){
-                    // siempre vamos a intentar colocar la primera actividad que tengamos en la lista, si colocamos satisfactoriamente una actividad, vamos a continuar, colocando actividades
-                    lista_actividades.removeAt(0)
-                    lista_actividades_sustituidas.add(resultado)
+                do {
+                    var resultado : Actividad?= dia_laboral.sustituir_actividad(lista_actividades[0]);
 
-                    continue@outer2
-                }
+                    // si se ha sustituido, tenemos que quitarlo, de la lista.
+                    if( resultado != null){
+                        // siempre vamos a intentar colocar la primera actividad que tengamos en la lista, si colocamos satisfactoriamente una actividad, vamos a continuar, colocando actividades
+                        lista_actividades.removeAt(0)
+                        lista_actividades_sustituidas.add(resultado)
+                    }
+                }while (lista_actividades.size > 0 && resultado != null)
+
             }
-
         }
 
 
@@ -339,12 +386,11 @@ object Manager_TareasYActividades: Application() {
         // intentamos recolocar las tareas sustituidas.
         if( lista_actividades_sustituidas.size != 0){
 
-            outer@for (dia_laboral in lista_dias_laborales){
+            for (dia_laboral in lista_dias_laborales){
 
-                if( dia_laboral.hueco_disponible( lista_actividades_sustituidas[0])){
+                while( lista_actividades_sustituidas.size> 0 && dia_laboral.hueco_disponible( lista_actividades_sustituidas[0])){
                     // siempre vamos a intentar colocar la primera actividad que tengamos en la lista, si colocamos satisfactoriamente una actividad, vamos a continuar, colocando actividades
                     lista_actividades_sustituidas.removeAt(0)
-                    continue@outer
                 }
             }
         }
